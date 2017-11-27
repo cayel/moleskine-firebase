@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { MyMoviesComponent } from './my-movies/my-movies.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { LoginComponent } from './login/login.component';
       { path : 'login', component: LoginComponent }
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
