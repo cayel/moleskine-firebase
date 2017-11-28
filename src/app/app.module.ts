@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
+import { BooksFormComponent } from './books/books-form/books-form.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
     HomeComponent,
     MyBooksComponent,
     MyMoviesComponent,
-    LoginComponent
+    LoginComponent,
+    BooksFormComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
       { path: '', component: HomeComponent },
       { path : 'login', component: LoginComponent },
       // User
+      { path : 'books/new', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'my-books', component: MyBooksComponent, canActivate: [AuthGuard]},
       { path : 'my-movies', component: MyMoviesComponent, canActivate: [AuthGuard] }
       // Admin
