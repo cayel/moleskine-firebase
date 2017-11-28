@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,8 @@ import { MyBooksComponent } from './my-books/my-books.component';
 import { MyMoviesComponent } from './my-movies/my-movies.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,19 @@ import { AuthService } from './auth.service';
     AngularFireAuthModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path : 'my-books', component: MyBooksComponent},
-      { path : 'my-movies', component: MyMoviesComponent },
-      { path : 'login', component: LoginComponent }
+      { path : 'login', component: LoginComponent },
+      // User
+      { path : 'my-books', component: MyBooksComponent, canActivate: [AuthGuard]},
+      { path : 'my-movies', component: MyMoviesComponent, canActivate: [AuthGuard] }
+      // Admin
+      //{ path : 'admin', component: MyMoviesComponent, canActivate: [AuthGuard, AdminAuthGuard] }
     ])
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    AdminAuthGuard,
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
