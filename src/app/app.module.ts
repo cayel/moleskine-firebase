@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 
 
 import { RouterModule } from '@angular/router';
@@ -20,6 +22,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { BooksFormComponent } from './books/books-form/books-form.component';
+import { BookService } from './book.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { BooksFormComponent } from './books/books-form/books-form.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    CustomFormsModule,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
@@ -52,7 +57,9 @@ import { BooksFormComponent } from './books/books-form/books-form.component';
     AuthService,
     AuthGuard,
     AdminAuthGuard,
-    UserService],
+    UserService,
+    BookService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
