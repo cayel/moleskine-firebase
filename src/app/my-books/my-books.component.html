@@ -1,1 +1,21 @@
+<p>
 <a routerLink="/books/new" class="btn btn-primary">Nouveau livre</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Note</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let b of books$ | async">
+            <td>{{b.title}}</td>
+            <td>{{b.writer}}</td>
+            <td>{{b.rating}}</td>
+            <td><a [routerLink]="['/book/',b.$key]"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+        </tr>
+    </tbody>
+</table>

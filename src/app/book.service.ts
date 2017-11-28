@@ -6,8 +6,12 @@ export class BookService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  create(book, uid) {
-    return this.db.list('/books/'+uid+'/').push(book);
+  create(book, userId) {
+    return this.db.list('/books/'+userId+'/').push(book);
+  }
+
+  getAll(userId) {
+    return this.db.list('/books/'+userId);
   }
 
 }
