@@ -22,4 +22,8 @@ export class BookService {
   update(bookId, book, userId) {
     return this.db.object('/books/'+userId+'/'+bookId).update(book);
   }
+
+  delete(bookId, userId) {
+    return this.db.object('/books/'+userId+'/'+bookId).remove();
+  }
 }

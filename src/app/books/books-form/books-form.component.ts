@@ -32,7 +32,14 @@ export class BooksFormComponent implements OnInit, OnDestroy {
   save(book) {
     if (this.id) this.bookService.update(this.id, book, this.userId);
     else this.bookService.create(book, this.userId);
-    
+
+    this.router.navigate(['my-books']);
+  }
+
+  delete() {
+    if (!confirm('Etes-vous sûr de vouloir supprimer ce livre ?')) return;
+      
+    this.bookService.delete(this.id, this.userId);
     this.router.navigate(['my-books']);
   }
 
