@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take';
+import { Book } from '../../models/book';
 
 @Component({
   selector: 'app-books-form',
@@ -16,7 +17,7 @@ import 'rxjs/add/operator/take';
 export class BooksFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
-  book = {};
+  book: Book;
   id;
 
   constructor(
@@ -24,9 +25,7 @@ export class BooksFormComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private authService: AuthService, 
     private bookService: BookService) { 
-    
       this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid);
-
   }
 
   save(book) {
