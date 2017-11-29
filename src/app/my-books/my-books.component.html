@@ -1,27 +1,18 @@
 <p>
-<a routerLink="/books/new" class="btn btn-primary">Nouveau livre</a>
+    <a routerLink="/books/new" class="btn btn-primary">Nouveau livre</a>
 </p>
 <p>
-    <input 
-    #query
-    (keyup)="filter(query.value)"
-    type="text" class="form-control" placeholder="Recherche...">
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Recherche...">
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Note</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let b of filteredBooks">
-            <td>{{b.title}}</td>
-            <td>{{b.writer}}</td>
-            <td>{{b.rating}}</td>
-            <td><a [routerLink]="['/books/',b.$key]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-        </tr>
-    </tbody>
-</table>
+<data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+    <data-table-column [property]="'title'" [header]="'Titre'" [sortable]="true" [resizable]="true"></data-table-column>
+    <data-table-column [property]="'writer'" [header]="'Auteur'" [sortable]="true" [resizable]="true"></data-table-column>
+    <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true"></data-table-column>
+    <data-table-column [property]="'$key'">
+    <ng-template #dataTableCell let-item="item">
+        <a [routerLink]="['/books/',item.$key]">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </a>
+    </ng-template>
+    </data-table-column>
+</data-table>

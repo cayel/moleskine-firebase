@@ -8,7 +8,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
-
+import { DataTableModule } from 'angular-4-data-table';
 
 import { RouterModule } from '@angular/router';
 
@@ -38,6 +38,7 @@ import { BookService } from './book.service';
     BrowserModule,
     FormsModule,
     CustomFormsModule,
+    DataTableModule,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

@@ -17,7 +17,7 @@ import { Book } from '../../models/book';
 export class BooksFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
-  book: Book;
+  book: Book = {title:'',writer:'',date: new Date(), rating:5, imageUrl:'http://'};
   id;
 
   constructor(
