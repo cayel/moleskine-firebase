@@ -47,6 +47,7 @@ import { BookService } from './book.service';
       { path : 'login', component: LoginComponent },
       // User
       { path : 'books/new', component: BooksFormComponent, canActivate: [AuthGuard]},
+      { path : 'books/:id', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'my-books', component: MyBooksComponent, canActivate: [AuthGuard]},
       { path : 'my-movies', component: MyMoviesComponent, canActivate: [AuthGuard] }
       // Admin

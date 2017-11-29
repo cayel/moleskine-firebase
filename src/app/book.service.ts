@@ -14,4 +14,8 @@ export class BookService {
     return this.db.list('/books/'+userId);
   }
 
+  get(bookId, userId) {
+    console.log(bookId+userId)
+    return this.db.object('/books/' + userId+ '/' + bookId);
+  }
 }
