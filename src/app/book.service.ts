@@ -18,4 +18,8 @@ export class BookService {
     console.log(bookId+userId)
     return this.db.object('/books/' + userId+ '/' + bookId);
   }
+
+  update(bookId, book, userId) {
+    return this.db.object('/books/'+userId+'/'+bookId).update(book);
+  }
 }

@@ -17,6 +17,7 @@ export class BooksFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
   book = {};
+  id;
 
   constructor(
     private router: Router,
@@ -29,13 +30,15 @@ export class BooksFormComponent implements OnInit, OnDestroy {
   }
 
   save(book) {
-    this.bookService.create(book, this.userId);
+    if (this.id) this.bookService.update(this.id, book, this.userId);
+    else this.bookService.create(book, this.userId);
+    
     this.router.navigate(['my-books']);
   }
 
   ngOnInit() {    
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id) this.bookService.get(id, this.userId).take(1).subscribe(b => this.book = b);
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) this.bookService.get(this.id, this.userId).take(1).subscribe(b => this.book = b);
 }
 
   ngOnDestroy() {
