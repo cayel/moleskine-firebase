@@ -1,6 +1,12 @@
 <p>
 <a routerLink="/books/new" class="btn btn-primary">Nouveau livre</a>
 </p>
+<p>
+    <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Recherche...">
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -11,11 +17,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let b of books$ | async">
+        <tr *ngFor="let b of filteredBooks">
             <td>{{b.title}}</td>
             <td>{{b.writer}}</td>
             <td>{{b.rating}}</td>
-            <td><a [routerLink]="['/books/',b.$key]"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+            <td><a [routerLink]="['/books/',b.$key]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
         </tr>
     </tbody>
 </table>
