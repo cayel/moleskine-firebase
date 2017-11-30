@@ -25,7 +25,7 @@ export class MyBooksComponent implements OnInit, OnDestroy {
 
   initializeTable(books: Book[]) {
     this.tableResource = new DataTableResource(books);
-    this.tableResource.query({offset:0}).then(items => this.items = items);
+    this.tableResource.query({offset:0, limit:10}).then(items => this.items = items);
     this.tableResource.count().then(count => this.itemCount = count);
   }
   
@@ -45,7 +45,7 @@ export class MyBooksComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.bookSubscription = this.bookService.getAll(this.userId).subscribe(books => {
       this.books = books;
-
+      this.books.reverse();
       this.initializeTable(books);
     }); 
   }

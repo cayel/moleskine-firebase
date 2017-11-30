@@ -11,7 +11,7 @@ export class BookService {
   }
 
   getAll(userId) {
-    return this.db.list('/books/'+userId);
+    return this.db.list('/books/'+userId,{query: {orderByChild : 'date'}});
   }
 
   get(bookId, userId) {

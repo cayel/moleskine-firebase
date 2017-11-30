@@ -7,6 +7,11 @@
 <data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
     <data-table-column [property]="'title'" [header]="'Titre'" [sortable]="true" [resizable]="true"></data-table-column>
     <data-table-column [property]="'writer'" [header]="'Auteur'" [sortable]="true" [resizable]="true"></data-table-column>
+    <data-table-column [property]="'date'" [header]="'Date'" [sortable]="true" [resizable]="true">
+        <ng-template #dataTableCell let-item="item">
+            {{item.date | date:'MMMM yyyy':'':'fr'}}
+        </ng-template>
+    </data-table-column>
     <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true"></data-table-column>
     <data-table-column [property]="'$key'">
     <ng-template #dataTableCell let-item="item">
