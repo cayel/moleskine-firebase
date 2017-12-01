@@ -23,6 +23,7 @@ import { AuthGuard } from './auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { BooksFormComponent } from './books/books-form/books-form.component';
 import { BookService } from './book.service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BookService } from './book.service';
     MyBooksComponent,
     MyMoviesComponent,
     LoginComponent,
-    BooksFormComponent
+    BooksFormComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { BookService } from './book.service';
       { path : 'books/new', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'books/:id', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'my-books', component: MyBooksComponent, canActivate: [AuthGuard]},
-      { path : 'my-movies', component: MyMoviesComponent, canActivate: [AuthGuard] }
+      { path : 'my-movies', component: MyMoviesComponent, canActivate: [AuthGuard] },
+      { path : 'profile', component: ProfileComponent,  canActivate: [AuthGuard] }
       // Admin
       //{ path : 'admin', component: MyMoviesComponent, canActivate: [AuthGuard, AdminAuthGuard] }
     ])
