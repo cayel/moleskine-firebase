@@ -1,0 +1,24 @@
+<p>
+  <a routerLink="/concerts/new" class="btn btn-primary">Nouveau concert</a>
+</p>
+<p>
+  <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Recherche...">
+</p>
+<data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+  <data-table-column [property]="'artist'" [header]="'Artiste'" [sortable]="true" [resizable]="true"></data-table-column>
+  <data-table-column [property]="'with'" [header]="'Avec'" [sortable]="true" [resizable]="true"></data-table-column>
+  <data-table-column [property]="'venue'" [header]="'Salle'" [sortable]="true" [resizable]="true"></data-table-column>
+  <data-table-column [property]="'date'" [header]="'Date'" [sortable]="true" [resizable]="true">
+      <ng-template #dataTableCell let-item="item">
+          {{item.date | date:'dd/MM/yyyy':'':'fr'}}
+      </ng-template>
+  </data-table-column>
+  <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true"></data-table-column>
+  <data-table-column [property]="'$key'">
+  <ng-template #dataTableCell let-item="item">
+      <a [routerLink]="['/concerts/',item.$key]">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+  </ng-template>
+  </data-table-column>
+</data-table>

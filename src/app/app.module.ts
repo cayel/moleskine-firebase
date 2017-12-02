@@ -24,6 +24,9 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 import { BooksFormComponent } from './books/books-form/books-form.component';
 import { BookService } from './book.service';
 import { ProfileComponent } from './profile/profile.component';
+import { ConcertFormComponent } from './concert-form/concert-form.component';
+import { ConcertsComponent } from './concerts/concerts.component';
+import { ConcertService } from './concert.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { ProfileComponent } from './profile/profile.component';
     MyMoviesComponent,
     LoginComponent,
     BooksFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConcertFormComponent,
+    ConcertsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +58,10 @@ import { ProfileComponent } from './profile/profile.component';
       { path : 'books/:id', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'my-books', component: MyBooksComponent, canActivate: [AuthGuard]},
       { path : 'my-movies', component: MyMoviesComponent, canActivate: [AuthGuard] },
+      { path : 'concerts/new', component: ConcertFormComponent, canActivate: [AuthGuard] },      
+      { path : 'concerts/:id', component: ConcertFormComponent, canActivate: [AuthGuard] },      
+      { path : 'concerts', component: ConcertsComponent, canActivate: [AuthGuard] },      
+      { path : 'concerts', component: ConcertsComponent, canActivate: [AuthGuard] },      
       { path : 'profile', component: ProfileComponent,  canActivate: [AuthGuard] }
       // Admin
       //{ path : 'admin', component: MyMoviesComponent, canActivate: [AuthGuard, AdminAuthGuard] }
@@ -64,6 +73,7 @@ import { ProfileComponent } from './profile/profile.component';
     AdminAuthGuard,
     UserService,
     BookService,
+    ConcertService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="artist">Artiste</label>
+        <input #artist="ngModel" [(ngModel)]="concert.artist" name="artist" id="artist" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="artist.touched && artist.invalid">Artiste manquant.</div>
+      </div>
+      <div class="form-group">
+        <label for="with">Avec</label>
+        <input #with="ngModel" [(ngModel)]="concert.with" name="with" id="with" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="venue">Salle</label>
+        <input #venue="ngModel" [(ngModel)]="concert.venue" name="venue" id="venue" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="venue.touched && venue.invalid">Salle manquante.</div>
+      </div>      
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input #date="ngModel" [(ngModel)]="concert.date" name="date" id="date" type="date" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="date.touched && date.invalid">Date manquante.</div>
+      </div>
+      <div class="form-group">
+        <label for="rating">Note</label>
+        <input #rating="ngModel" [(ngModel)]="concert.rating" name="rating" id="rating" type="number" class="form-control" required [range]="[1, 10]">
+        <div class="alert alert-danger" *ngIf="rating.touched && rating.invalid">
+          <div *ngIf="rating.errors.required">Note manquante.</div>
+          <div *ngIf="rating.errors.range">La note doit être comprise entre 1 et 10.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary">Enregistrer</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Supprimer</button>
+    </form>
+  </div>
+</div>

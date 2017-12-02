@@ -14,8 +14,13 @@
           <a class="nav-link" routerLink="/my-books">Livres</a>
         </li>
         <li *ngIf="appUser" class="nav-item">
+          <a class="nav-link" routerLink="/concerts">Concerts</a>
+        </li>
+        <!--
+        <li *ngIf="appUser" class="nav-item">
           <a class="nav-link" routerLink="/my-movies">Films</a>
         </li>
+      -->
       </ul>
       <ul class="navbar-nav">
         <ng-template #anonymousUser>
@@ -27,7 +32,7 @@
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ appUser.name }}</a>
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" routerLink="/profile">Profil</a>
+            <!--<a class="dropdown-item" routerLink="/profile">Profil</a>-->
             <ng-container *ngIf="appUser.isAdmin">
               <a class="dropdown-item" href="#">Admin</a>
             </ng-container>
