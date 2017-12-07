@@ -7,7 +7,6 @@ export class ConcertService {
   constructor(private db: AngularFireDatabase) { }
   
   create(concert, userId) {
-    console.log(concert);
     return this.db.list('/concerts/'+userId+'/').push(concert);
   }
 

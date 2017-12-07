@@ -1,13 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BookService } from '../../book.service';
-import { UserService } from '../../user.service';
-import { AppUser } from '../../models/app-user';
-import { AuthService } from '../../auth.service';
-import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/take';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/take';
+import { Subscription } from 'rxjs/Subscription';
+
+import { AuthService } from '../../auth.service';
+import { BookService } from '../../book.service';
 import { Book } from '../../models/book';
+import { DateHelper } from '../../date-helper';
 
 @Component({
   selector: 'app-books-form',
@@ -17,7 +18,8 @@ import { Book } from '../../models/book';
 export class BooksFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
-  book: Book = {title:'',writer:'',date: new Date(), rating:5, imageUrl:'http://'};
+  dateEntry;
+  book: Book = {title:'',writer:'',date: new Date().getTime(), rating:5, imageUrl:'http://'};
   id;
 
   constructor(
@@ -29,6 +31,8 @@ export class BooksFormComponent implements OnInit, OnDestroy {
   }
 
   save(book) {
+    book.date = new Date(Date.parse(this.dateEntry)).getTime();
+
     if (this.id) this.bookService.update(this.id, book, this.userId);
     else this.bookService.create(book, this.userId);
 
@@ -44,7 +48,10 @@ export class BooksFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {    
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.bookService.get(this.id, this.userId).take(1).subscribe(b => this.book = b);
+    if (this.id) this.bookService.get(this.id, this.userId).take(1).subscribe(b => {
+      this.book = b;
+      this.dateEntry = new DateHelper().formatDate(new Date(this.book.date));
+    });
 }
 
   ngOnDestroy() {

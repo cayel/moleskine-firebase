@@ -1,7 +1,4 @@
-export interface Book {
-    title: string;
-    writer: string;
-    date: Date;
-    rating: number;
-    imageUrl: string;
+export class Book {
+    constructor(public title : string, public writer : string, public date : number, public rating : number, public imageUrl: string) {
+    }
 }
