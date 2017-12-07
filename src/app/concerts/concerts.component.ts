@@ -36,7 +36,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
 
   filter(query: string) {
     let filteredConcerts = (query) ?
-      this.concerts.filter(b => b.artist.toLowerCase().includes(query.toLowerCase())) : 
+      this.concerts.filter(b => b.mainArtist.toLowerCase().includes(query.toLowerCase())) : 
       this.concerts;
 
     this.initializeTable(filteredConcerts);

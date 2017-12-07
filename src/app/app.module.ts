@@ -1,32 +1,32 @@
-import { UserService } from './user.service';
-import { environment } from '../environments/environment';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
-import { CustomFormsModule } from 'ng2-validation';
-import { DataTableModule } from 'angular-4-data-table';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataTableModule } from 'angular-4-data-table';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { CustomFormsModule } from 'ng2-validation';
 
+import { environment } from '../environments/environment';
+import { AdminAuthGuard } from './admin-auth-guard.service';
+import { AdminComponent } from './admin/admin.component';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
+import { BookService } from './book.service';
+import { BooksFormComponent } from './books/books-form/books-form.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
+import { ConcertFormComponent } from './concert-form/concert-form.component';
+import { ConcertService } from './concert.service';
+import { ConcertsComponent } from './concerts/concerts.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { MyMoviesComponent } from './my-movies/my-movies.component';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
-import { AdminAuthGuard } from './admin-auth-guard.service';
-import { BooksFormComponent } from './books/books-form/books-form.component';
-import { BookService } from './book.service';
 import { ProfileComponent } from './profile/profile.component';
-import { ConcertFormComponent } from './concert-form/concert-form.component';
-import { ConcertsComponent } from './concerts/concerts.component';
-import { ConcertService } from './concert.service';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { ConcertService } from './concert.service';
     BooksFormComponent,
     ProfileComponent,
     ConcertFormComponent,
-    ConcertsComponent
+    ConcertsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +63,9 @@ import { ConcertService } from './concert.service';
       { path : 'concerts/:id', component: ConcertFormComponent, canActivate: [AuthGuard] },      
       { path : 'concerts', component: ConcertsComponent, canActivate: [AuthGuard] },      
       { path : 'concerts', component: ConcertsComponent, canActivate: [AuthGuard] },      
-      { path : 'profile', component: ProfileComponent,  canActivate: [AuthGuard] }
+      { path : 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
       // Admin
-      //{ path : 'admin', component: MyMoviesComponent, canActivate: [AuthGuard, AdminAuthGuard] }
+      { path : 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard] }
     ])
   ],
   providers: [

@@ -1,7 +1,4 @@
-export interface Concert {
-    artist: string;
-    with: string;
-    date: Date;
-    venue:string;
-    rating: number;
+export class Concert {
+    constructor(public mainArtist : string, public otherArtist : string, public date : number, public venue : string, public rating : number) {
+    }
 }

@@ -5,8 +5,8 @@
   <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Recherche...">
 </p>
 <data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
-  <data-table-column [property]="'artist'" [header]="'Artiste'" [sortable]="true" [resizable]="true"></data-table-column>
-  <data-table-column [property]="'with'" [header]="'Avec'" [sortable]="true" [resizable]="true"></data-table-column>
+  <data-table-column [property]="'mainArtist'" [header]="'Artiste'" [sortable]="true" [resizable]="true"></data-table-column>
+  <data-table-column [property]="'otherArtist'" [header]="'Avec'" [sortable]="true" [resizable]="true"></data-table-column>
   <data-table-column [property]="'venue'" [header]="'Salle'" [sortable]="true" [resizable]="true"></data-table-column>
   <data-table-column [property]="'date'" [header]="'Date'" [sortable]="true" [resizable]="true">
       <ng-template #dataTableCell let-item="item">

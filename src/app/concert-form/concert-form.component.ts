@@ -4,6 +4,7 @@ import { Concert } from '../models/concert';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ConcertService } from '../concert.service';
+import { DateHelper } from '../date-helper';
 
 @Component({
   selector: 'app-concert-form',
@@ -13,7 +14,8 @@ import { ConcertService } from '../concert.service';
 export class ConcertFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
-  concert: Concert = {artist:'',with:'',venue: '',date: new Date(), rating:5};
+  dateEntry;
+  concert: Concert = {mainArtist:'',otherArtist:'',venue: '',date: new Date().getTime(), rating:5};
   id;
 
   constructor(
@@ -24,7 +26,9 @@ export class ConcertFormComponent implements OnInit, OnDestroy {
       this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid);
   }
 
-  save(concert) {
+  save(concert) { 
+    concert.date = new Date(Date.parse(this.dateEntry)).getTime();
+
     if (this.id) this.concertService.update(this.id, concert, this.userId);
     else this.concertService.create(concert, this.userId);
 
@@ -40,8 +44,11 @@ export class ConcertFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {    
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.concertService.get(this.id, this.userId).take(1).subscribe(c => this.concert = c);
-}
+    if (this.id) this.concertService.get(this.id, this.userId).take(1).subscribe(c => {
+      this.concert = c;
+      this.dateEntry = new DateHelper().formatDate(new Date(this.concert.date));
+    });
+  }
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe();

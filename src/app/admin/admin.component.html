@@ -1,0 +1,22 @@
+<h2>Import de données</h2>
+
+<div class="card">
+  <h4 class="card-header">Concerts</h4>
+  <div class="card-body">
+    <h4 class="card-title"></h4>
+    <p class="card-text">
+      <label class="custom-file">
+        <input type="file" (change)="changeListener($event)" id="file_concert" class="custom-file-input"/>
+        <span class="custom-file-control"></span>
+      </label>
+      <br>      
+    </p>  
+      <div *ngIf="fileName">Fichier : {{ fileName }}
+      <button class="btn btn-primary" (click)="extractData()">
+        Import des données
+      </button>
+    </div>
+  </div>
+</div>
+
+
