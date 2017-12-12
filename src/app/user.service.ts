@@ -13,7 +13,8 @@ export class UserService {
     console.log(user);
     this.db.object('/users/' + user.uid).update({
       name: user.displayName,
-      email: user.email
+      email: user.email,
+      lastConnection: new Date()
     });
   }
   get(uid: string): FirebaseObjectObservable<AppUser> {

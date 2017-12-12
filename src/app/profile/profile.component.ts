@@ -17,17 +17,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   //user: AppUser = {name:'', email:'', isAdmin: false};
   user: User;
   id;
+  appUser;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private authService: AuthService) {
-      this.userSubscription = this.authService.user$.subscribe(user => {
-        this.user = user;
-        this.userId = user.uid;
-        console.log(this.user);
+      this.userSubscription = authService.appUser$.subscribe(appUser => {
+        this.appUser = appUser;
+        console.log(this.appUser);
       });
-      
   }
 
   save(user) {
