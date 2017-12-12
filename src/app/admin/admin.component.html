@@ -37,5 +37,23 @@
     </div>
   </div>
 </div>
+<div class="card">
+  <h4 class="card-header">Films</h4>
+  <div class="card-body">
+    <h4 class="card-title"></h4>
+    <p class="card-text">
+      <label class="custom-file">
+        <input type="file" (change)="changeListenerMovie($event)" id="file_movie" class="custom-file-input"/>
+        <span class="custom-file-control"></span>
+      </label>
+      <br>      
+    </p>  
+      <div *ngIf="fileNameMovie">Fichier : {{ fileNameMovie }}
+      <button class="btn btn-primary" (click)="extractDataMovie()">
+        Import des données
+      </button>
+    </div>
+  </div>
+</div>
 
 

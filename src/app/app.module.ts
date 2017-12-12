@@ -24,9 +24,11 @@ import { ConcertsComponent } from './concerts/concerts.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MyBooksComponent } from './my-books/my-books.component';
-import { MyMoviesComponent } from './my-movies/my-movies.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './user.service';
+import { MoviesComponent } from './movies/movies.component';
+import { MovieFormComponent } from './movie-form/movie-form.component';
+import { MovieService } from './movie.service';
 
 @NgModule({
   declarations: [
@@ -34,13 +36,14 @@ import { UserService } from './user.service';
     BsNavbarComponent,
     HomeComponent,
     MyBooksComponent,
-    MyMoviesComponent,
     LoginComponent,
     BooksFormComponent,
     ProfileComponent,
     ConcertFormComponent,
     ConcertsComponent,
-    AdminComponent
+    AdminComponent,
+    MoviesComponent,
+    MovieFormComponent
   ],
   imports: [
     BrowserModule,
@@ -58,10 +61,11 @@ import { UserService } from './user.service';
       { path : 'books/new', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'books/:id', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'my-books', component: MyBooksComponent, canActivate: [AuthGuard]},
-      { path : 'my-movies', component: MyMoviesComponent, canActivate: [AuthGuard] },
+      { path : 'movies/new', component: MovieFormComponent, canActivate: [AuthGuard] },      
+      { path : 'movies/:id', component: MovieFormComponent, canActivate: [AuthGuard] },      
+      { path : 'movies', component: MoviesComponent, canActivate: [AuthGuard] },
       { path : 'concerts/new', component: ConcertFormComponent, canActivate: [AuthGuard] },      
       { path : 'concerts/:id', component: ConcertFormComponent, canActivate: [AuthGuard] },      
-      { path : 'concerts', component: ConcertsComponent, canActivate: [AuthGuard] },      
       { path : 'concerts', component: ConcertsComponent, canActivate: [AuthGuard] },      
       { path : 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
       // Admin
@@ -74,7 +78,8 @@ import { UserService } from './user.service';
     AdminAuthGuard,
     UserService,
     BookService,
-    ConcertService
+    ConcertService,
+    MovieService
   ],
   bootstrap: [AppComponent]
 })

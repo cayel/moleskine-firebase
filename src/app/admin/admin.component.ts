@@ -9,6 +9,10 @@ import { BookService } from '../book.service';
 import { ConcertService } from '../concert.service';
 import { Book } from '../models/book';
 import { Concert } from '../models/concert';
+import { MovieService } from '../movie.service';
+import { Movie } from '../models/movie';
+
+const DEFAULT_IMAGEURL = 'http://';
 
 @Component({
   selector: 'app-admin',
@@ -20,11 +24,12 @@ export class AdminComponent implements OnInit, OnDestroy  {
   csvData: any[] = [];
   fileNameBook : string;
   fileNameConcert : string;
+  fileNameMovie : string;
   public fileString;
   userId: string;
   userSubscription : Subscription;
 
-  constructor(private router: Router, private authService: AuthService,private bookService: BookService,private concertService: ConcertService) {}
+  constructor(private router: Router, private authService: AuthService,private bookService: BookService,private concertService: ConcertService, private movieService: MovieService) {}
 
   ngOnInit() {
     this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid);
@@ -33,7 +38,7 @@ export class AdminComponent implements OnInit, OnDestroy  {
   async saveBook(title : string, writer : string, date : string, rating: number) {
     let convertDate : Date;
     convertDate = new Date(Date.parse(date));    
-    let book = new Book(title, writer, convertDate.getTime(), rating, 'http://');
+    let book = new Book(title, writer, convertDate.getTime(), rating, DEFAULT_IMAGEURL);
     let result = await this.bookService.create(book,this.userId);
   }
 
@@ -42,6 +47,13 @@ export class AdminComponent implements OnInit, OnDestroy  {
     convertDate = new Date(Date.parse(date));    
     let concert = new Concert(mainArtist, otherArtist, convertDate.getTime(), venue, rating);
     let result = await this.concertService.create(concert,this.userId);
+  }
+
+  async saveMovie(title : string, director : string, cinema: boolean, date : string, rating: number) {
+    let convertDate : Date;
+    convertDate = new Date(Date.parse(date));    
+    let movie = new Movie(title, director, cinema,  convertDate.getTime(), rating, DEFAULT_IMAGEURL) ;
+    let result = await this.movieService.create(movie,this.userId);
   }
 
   extractDataFromCsvFile (fileString) : any {
@@ -80,6 +92,15 @@ export class AdminComponent implements OnInit, OnDestroy  {
     this.router.navigate(['my-books']);
   }
 
+  extractDataMovie() {
+    let lines = [];
+    lines = this.extractDataFromCsvFile(this.fileString);
+    for ( let i = 1; i < lines.length; i++) {
+      this.saveMovie(lines[i][1], lines[i][2], lines[i][3], lines[i][4], lines[i][5]);
+    }
+    this.router.navigate(['movies']);
+  }
+
   readThisConcert(inputValue: any): void {
     var file: File = inputValue.files[0];
     this.fileNameConcert = file.name;
@@ -101,6 +122,17 @@ export class AdminComponent implements OnInit, OnDestroy  {
     };
     myReader.readAsText(file);
   }
+
+  readThisMovie(inputValue: any): void {
+    var file: File = inputValue.files[0];
+    this.fileNameMovie = file.name;
+    var myReader: FileReader = new FileReader();
+    var fileType = inputValue.parentElement.id;
+    myReader.onloadend = (e) => {
+      this.fileString = myReader.result;
+    };
+    myReader.readAsText(file);
+  }
   
   changeListenerConcert($event) {
     this.readThisConcert($event.target);
@@ -110,6 +142,10 @@ export class AdminComponent implements OnInit, OnDestroy  {
     this.readThisBook($event.target);
   }
 
+  changeListenerMovie($event) {
+    this.readThisMovie($event.target);
+  }
+  
   ngOnDestroy () {
     this.userSubscription.unsubscribe();
   }  
