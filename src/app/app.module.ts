@@ -29,6 +29,9 @@ import { UserService } from './user.service';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieFormComponent } from './movie-form/movie-form.component';
 import { MovieService } from './movie.service';
+import { TvshowsComponent } from './tvshows/tvshow/tvshows.component';
+import { TvshowFormComponent } from './tvshows/tvshow-form/tvshow-form.component';
+import { TvshowService } from './tvshow.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { MovieService } from './movie.service';
     ConcertsComponent,
     AdminComponent,
     MoviesComponent,
-    MovieFormComponent
+    MovieFormComponent,
+    TvshowsComponent,
+    TvshowFormComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,9 @@ import { MovieService } from './movie.service';
       { path : 'concerts/new', component: ConcertFormComponent, canActivate: [AuthGuard] },      
       { path : 'concerts/:id', component: ConcertFormComponent, canActivate: [AuthGuard] },      
       { path : 'concerts', component: ConcertsComponent, canActivate: [AuthGuard] },      
+      { path : 'tvshows/new', component: TvshowFormComponent, canActivate: [AuthGuard] },      
+      { path : 'tvshows/:id', component: TvshowFormComponent, canActivate: [AuthGuard] },      
+      { path : 'tvshows', component: TvshowsComponent, canActivate: [AuthGuard] },      
       { path : 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
       // Admin
       { path : 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard] }
@@ -79,7 +87,8 @@ import { MovieService } from './movie.service';
     UserService,
     BookService,
     ConcertService,
-    MovieService
+    MovieService,
+    TvshowService
   ],
   bootstrap: [AppComponent]
 })
