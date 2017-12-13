@@ -13,6 +13,10 @@ export class MovieService {
     getAll(userId) {
       return this.db.list('/movies/'+userId,{query: {orderByChild : 'date', }});
     }
+
+    getLast(userId) {
+      return this.db.list('/movies/'+userId,{query: {orderByChild : 'date', limitToLast:5 }});
+    }    
   
     get(movieId, userId) {
       console.log(movieId+userId)
