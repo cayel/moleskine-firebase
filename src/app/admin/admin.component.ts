@@ -13,6 +13,8 @@ import { MovieService } from '../movie.service';
 import { Movie } from '../models/movie';
 import { TvshowService } from '../tvshow.service';
 import { Tvshow } from '../models/tvshow';
+import { ComicService } from '../comic.service';
+import { Comic } from '../models/comic';
 
 const DEFAULT_IMAGEURL = 'http://';
 
@@ -28,6 +30,7 @@ export class AdminComponent implements OnInit, OnDestroy  {
   fileNameConcert : string;
   fileNameMovie : string;
   fileNameTvshow : string;
+  fileNameComic : string;
   public fileString;
   userId: string;
   userSubscription : Subscription;
@@ -38,7 +41,8 @@ export class AdminComponent implements OnInit, OnDestroy  {
     private bookService: BookService,
     private concertService: ConcertService, 
     private movieService: MovieService, 
-    private tvshowService: TvshowService) {}
+    private tvshowService: TvshowService,
+    private comicService: ComicService) {}
 
   ngOnInit() {
     this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid);
@@ -72,6 +76,13 @@ export class AdminComponent implements OnInit, OnDestroy  {
     let result = await this.tvshowService.create(tvshow,this.userId);
   }
 
+  async saveComic(title : string, serie: string, volume: number, scenarist: string, cartoonist: string,  date : string, rating: number) {
+    let convertDate : Date;
+    convertDate = new Date(Date.parse(date));    
+    let comic = new Comic(title, serie,volume, scenarist,cartoonist,  convertDate.getTime(), rating, DEFAULT_IMAGEURL) ;
+    let result = await this.comicService.create(comic,this.userId);
+  }
+  
   extractDataFromCsvFile (fileString) : any {
     let allTextLines = fileString.split(/\r\n|\n/);
     let headers = allTextLines[0].split('\t');
@@ -126,6 +137,15 @@ export class AdminComponent implements OnInit, OnDestroy  {
     this.router.navigate(['tvshows']);
   }  
 
+  extractDataComic() {
+    let lines = [];
+    lines = this.extractDataFromCsvFile(this.fileString);
+    for ( let i = 1; i < lines.length; i++) {
+      this.saveComic(lines[i][1], lines[i][7], lines[i][8],lines[i][2], lines[i][3], lines[i][4], lines[i][5]);
+    }
+    this.router.navigate(['comics']);
+  }  
+
   readThisConcert(inputValue: any): void {
     var file: File = inputValue.files[0];
     this.fileNameConcert = file.name;
@@ -169,6 +189,17 @@ export class AdminComponent implements OnInit, OnDestroy  {
     };
     myReader.readAsText(file);
   }
+
+  readThisComic(inputValue: any): void {
+    var file: File = inputValue.files[0];
+    this.fileNameComic = file.name;
+    var myReader: FileReader = new FileReader();
+    var fileType = inputValue.parentElement.id;
+    myReader.onloadend = (e) => {
+      this.fileString = myReader.result;
+    };
+    myReader.readAsText(file);
+  }  
   
   changeListenerConcert($event) {
     this.readThisConcert($event.target);
@@ -186,6 +217,10 @@ export class AdminComponent implements OnInit, OnDestroy  {
     this.readThisTvshow($event.target);
   }
 
+  changeListenerComic($event) {
+    this.readThisComic($event.target);
+  }
+  
   ngOnDestroy () {
     this.userSubscription.unsubscribe();
   }  

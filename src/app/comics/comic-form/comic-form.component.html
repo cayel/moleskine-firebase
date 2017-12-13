@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input #title="ngModel" [(ngModel)]="comic.title" name="title" id="title" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">Titre manquant.</div>
+      </div>
+      <div class="form-group">
+        <label for="serie">Série</label>
+        <input #serie="ngModel" [(ngModel)]="comic.serie" name="serie" id="serie" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="volume">Volume</label>
+        <input #volume="ngModel" [(ngModel)]="comic.volume" name="volume" id="volume" type="number" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="scenarist">Scénariste</label>
+        <input #scenarist="ngModel" [(ngModel)]="comic.scenarist" name="scenarist" id="scenarist" type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="scenarist.touched && scenarist.invalid">Scénariste manquant.</div>
+      </div>
+      <div class="form-group">
+        <label for="cartoonist">Dessinateur</label>
+        <input #cartoonist="ngModel" [(ngModel)]="comic.cartoonist" name="cartoonist" id="cartoonist" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input #date="ngModel" [(ngModel)]="dateEntry" name="date" id="date" type="date" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="date.touched && date.invalid">Date manquante.</div>
+      </div>
+      <div class="form-group">
+        <label for="rating">Note</label>
+        <input #rating="ngModel" [(ngModel)]="comic.rating" name="rating" id="rating" type="number" class="form-control" required [range]="[1, 10]">
+        <div class="alert alert-danger" *ngIf="rating.touched && rating.invalid">
+          <div *ngIf="rating.errors.required">Note manquante.</div>
+          <div *ngIf="rating.errors.range">La note doit être comprise entre 1 et 10.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Url</label>
+        <input #imageUrl="ngModel" [(ngModel)]="comic.imageUrl" name="imageUrl" id="imageUrl" type="url" class="form-control" required url>
+        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+          <div *ngIf="imageUrl.errors.required">URL manquante.</div>
+          <div *ngIf="imageUrl.errors.url">L'URL n'est pas valide.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary">Enregistrer</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Supprimer</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="comic.title" class="card" style="width: 20rem;">
+      <img class="card-img-top" [src]="comic.imageUrl" *ngIf="comic.imageUrl">
+      <div class="card-body">
+        <h4 class="card-title">{{comic.title}}</h4>
+        <p class="card-text">{{comic.director}}</p>
+      </div>
+    </div>
+  </div>
+</div>

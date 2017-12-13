@@ -37,6 +37,7 @@
     </div>
   </div>
 </div>
+<br>
 <div class="card">
   <h4 class="card-header">Films</h4>
   <div class="card-body">
@@ -55,6 +56,7 @@
     </div>
   </div>
 </div>
+<br>
 <div class="card">
   <h4 class="card-header">Séries</h4>
   <div class="card-body">
@@ -68,6 +70,25 @@
     </p>  
       <div *ngIf="fileNameTvshow">Fichier : {{ fileNameTvshow }}
       <button class="btn btn-primary" (click)="extractDataTvshow()">
+        Import des données
+      </button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card">
+  <h4 class="card-header">BDs</h4>
+  <div class="card-body">
+    <h4 class="card-title"></h4>
+    <p class="card-text">
+      <label class="custom-file">
+        <input type="file" (change)="changeListenerComic($event)" id="file_comic" class="custom-file-input"/>
+        <span class="custom-file-control"></span>
+      </label>
+      <br>      
+    </p>  
+      <div *ngIf="fileNameComic">Fichier : {{ fileNameComic }}
+      <button class="btn btn-primary" (click)="extractDataComic()">
         Import des données
       </button>
     </div>

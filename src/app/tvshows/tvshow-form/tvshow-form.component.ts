@@ -27,10 +27,8 @@ export class TvshowFormComponent implements OnInit, OnDestroy {
   }
 
   save(tvshow) {
-    console.log(tvshow);
     tvshow.date = new Date(Date.parse(this.dateEntry)).getTime();
 
-    console.log(tvshow);
     if (this.id) this.tvshowService.update(this.id, tvshow, this.userId);
     else this.tvshowService.create(tvshow, this.userId);
 

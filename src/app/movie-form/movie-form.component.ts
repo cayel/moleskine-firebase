@@ -28,10 +28,8 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   }
 
   save(movie) {
-    console.log(movie);
     movie.date = new Date(Date.parse(this.dateEntry)).getTime();
 
-    console.log(movie);
     if (this.id) this.movieService.update(this.id, movie, this.userId);
     else this.movieService.create(movie, this.userId);
 
