@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col">
+    <h5>Les 5 derniers livres</h5>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="row" *ngIf="userId">
+      <ng-container *ngFor="let book of books; let i = index;">
+        <a [routerLink]="['/books/',book.$key]">
+          <img class="col col-2-4" [src]="book.imageUrl" alt="" title={{book.title}} style="max-width:150px;height:auto" />
+        </a>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,10 @@ export class ComicService {
     return this.db.list('/comics/'+userId,{query: {orderByChild : 'date', }});
   }
 
+  getLast(userId) {
+    return this.db.list('/comics/'+userId,{query: {orderByChild : 'date', limitToLast:5 }});
+  }     
+
   get(comicId, userId) {
     return this.db.object('/comics/' + userId+ '/' + comicId);
   }

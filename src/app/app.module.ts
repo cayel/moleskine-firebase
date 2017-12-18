@@ -35,6 +35,9 @@ import { TvshowService } from './tvshow.service';
 import { ComicsComponent } from './comics/comics/comics.component';
 import { ComicFormComponent } from './comics/comic-form/comic-form.component';
 import { ComicService } from './comic.service';
+import { BookSummaryComponent } from './books/book-summary/book-summary.component';
+import { MovieSummaryComponent } from './movies/movie-summary/movie-summary.component';
+import { ComicSummaryComponent } from './comics/comic-summary/comic-summary.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { ComicService } from './comic.service';
     TvshowsComponent,
     TvshowFormComponent,
     ComicsComponent,
-    ComicFormComponent
+    ComicFormComponent,
+    BookSummaryComponent,
+    MovieSummaryComponent,
+    ComicSummaryComponent
   ],
   imports: [
     BrowserModule,
