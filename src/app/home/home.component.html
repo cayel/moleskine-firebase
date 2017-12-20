@@ -1,3 +1,14 @@
-<book-summary *ngIf="userId"></book-summary>
-<movie-summary *ngIf="userId"></movie-summary>
-<comic-summary *ngIf="userId"></comic-summary>
+<div class="col-sm-8" *ngIf="userId">
+    <book-summary></book-summary>
+    <movie-summary></movie-summary>
+    <comic-summary></comic-summary>
+</div>
+<div *ngIf="!userId" class="jumbotron">
+    <h1 class="display-3">Bienvenue sur Moleskine !</h1>
+    <p class="lead">Pour simplement noter ce que nous pouvons voir, lire, entendre ...</p>
+    <hr class="my-4">
+    <p>Sur Moleskine, vous pouvez enregistrer tous les films, séries et concerts que vous voyez. Vous pouvez aussi noter tous les livres et bandes dessinées que vous lisez.</p>
+    <p class="lead">
+    <!--    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>-->
+    </p>
+</div>

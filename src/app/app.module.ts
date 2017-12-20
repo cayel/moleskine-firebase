@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { CustomFormsModule } from 'ng2-validation';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { environment } from '../environments/environment';
 import { AdminAuthGuard } from './admin-auth-guard.service';
@@ -65,6 +66,7 @@ import { ComicSummaryComponent } from './comics/comic-summary/comic-summary.comp
     BrowserModule,
     FormsModule,
     CustomFormsModule,
+    ChartsModule,
     DataTableModule,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),

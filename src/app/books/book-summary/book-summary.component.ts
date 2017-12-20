@@ -3,6 +3,7 @@ import { Book } from '../../models/book';
 import { Subscription } from 'rxjs/Subscription';
 import { BookService } from '../../book.service';
 import { AuthService } from '../../auth.service';
+import { DateHelper } from '../../date-helper';
 
 @Component({
   selector: 'book-summary',
@@ -14,6 +15,17 @@ export class BookSummaryComponent implements OnInit, OnDestroy {
   bookSubscription: Subscription;
   userSubscription: Subscription;
   userId: string;
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels:string[] = ['2017'];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+ 
+  public barChartData:any[] = [
+    {data: [], label: '2017'}
+  ];
 
   constructor(private authService: AuthService,  private bookService: BookService ) { 
     this.userSubscription = this.authService.user$.subscribe(user => {
@@ -23,6 +35,26 @@ export class BookSummaryComponent implements OnInit, OnDestroy {
         this.books.reverse();
       });
     });
+  }
+
+  chartData () {    
+    let countBooks = 0;
+    for ( let i = 1; i < this.books.length; i++) {
+      let dateEntry = new Date(this.books[i].date);
+      console.log(dateEntry.getFullYear());
+      if (dateEntry.getFullYear() == 2017) {
+        countBooks++;
+      }
+    }
+    console.log(countBooks);
+    this.barChartData= [
+      {data: [countBooks], label: '2017'}
+    ];
+    /*
+    this.barChartData  = [
+      {data: [countBooks], label: '2017'}
+    ];
+    */    
   }
 
   ngOnInit() {
