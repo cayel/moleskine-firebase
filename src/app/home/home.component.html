@@ -1,7 +1,12 @@
+<div class="row">
 <div class="col-sm-8" *ngIf="userId">
     <book-summary></book-summary>
     <movie-summary></movie-summary>
     <comic-summary></comic-summary>
+</div>
+<div class="col-sm-4" *ngIf="userId">
+    <summary-stat></summary-stat>
+</div>
 </div>
 <div *ngIf="!userId" class="jumbotron">
     <h1 class="display-3">Bienvenue sur Moleskine !</h1>

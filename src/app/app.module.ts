@@ -39,6 +39,7 @@ import { ComicService } from './comic.service';
 import { BookSummaryComponent } from './books/book-summary/book-summary.component';
 import { MovieSummaryComponent } from './movies/movie-summary/movie-summary.component';
 import { ComicSummaryComponent } from './comics/comic-summary/comic-summary.component';
+import { SummaryStatComponent } from './summary-stat/summary-stat.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ComicSummaryComponent } from './comics/comic-summary/comic-summary.comp
     ComicFormComponent,
     BookSummaryComponent,
     MovieSummaryComponent,
-    ComicSummaryComponent
+    ComicSummaryComponent,
+    SummaryStatComponent
   ],
   imports: [
     BrowserModule,
