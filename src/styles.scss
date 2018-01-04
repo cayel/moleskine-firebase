@@ -2,11 +2,33 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 
-$primary-color: #00bcd4;
-$primary-color-hover: #00bcd4;
+$brand-color: #00bcd4;
+$brand-color-hover: #00bcd4;
+
+// http://colorpalettes.net/color-palette-3672/
+/*$palette-color1: #393d45;
+$palette-color2: #566775;
+$palette-color3: #9aadc2;
+$palette-color4: #dfe1df;
+$palette-color5: #caac91;*/
+
+//http://colorpalettes.net/color-palette-3588/
+$palette-color1: #234a56;
+$palette-color2: #417d95;
+$palette-color3: #89b9c5;
+$palette-color5: #c1dee2;
+$palette-color4: #dde7dc;
+
+//http://colorpalettes.net/color-palette-366/
+/*$palette-color1: #4e5e73;
+$palette-color2: #7db5ba;
+$palette-color3: #b9e1eb;
+$palette-color4: #cfe4de;
+$palette-color5: #a9c8bd;*/
 
 body { 
     padding-top: 80px; 
+    background-color: $palette-color4;
   }
   
   h1, h2, h3 { 
@@ -14,41 +36,46 @@ body {
   }
   
   .navbar { 
+    background-color: $palette-color1;
     border-bottom: 3px solid #e7e7e7;
   }
   
   .navbar-dark .navbar-brand {
-    color: $primary-color;
+    color: $brand-color;
   }
   
   .navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
-    color: $primary-color-hover;
+    color: $brand-color-hover;
   }
 
   .list-group-item.active {
-    background-color: $primary-color;
-    border-color: $primary-color;
+    background-color: $palette-color2;
+    border-color: $palette-color2;
   }
 
   .btn-primary {
-    background-color: $primary-color;
-    border-color: $primary-color;
+    background-color: $palette-color2;
+    border-color: $palette-color2;
   }
 
   .btn-primary:hover {
-    background-color: $primary-color-hover;
-    border-color: $primary-color-hover;
+    background-color: $palette-color2;
+    border-color: $palette-color2;
   }
   
   .btn-primary.disabled, .btn-primary:disabled {
-    background-color: $primary-color;
-    border-color: $primary-color;
+    background-color: $palette-color2;
+    border-color: $palette-color2;
   }
 
   .badge-primary {
-    background-color: $primary-color-hover;    
+    background-color: $palette-color2;    
   }
 
   .form-control:focus {
-    border-color: $primary-color;
+    border-color: $palette-color2;
+  }
+
+  .card-header {
+    background-color: $palette-color3;
   }
