@@ -15,7 +15,6 @@ export class TvshowService {
     }
   
     get(tvshowId, userId) {
-      console.log(tvshowId+userId)
       return this.db.object('/tvshows/' + userId+ '/' + tvshowId);
     }
   

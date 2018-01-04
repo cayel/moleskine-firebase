@@ -19,7 +19,6 @@ export class MovieService {
     }    
   
     get(movieId, userId) {
-      console.log(movieId+userId)
       return this.db.object('/movies/' + userId+ '/' + movieId);
     }
   

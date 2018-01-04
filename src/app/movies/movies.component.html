@@ -7,14 +7,22 @@
 <data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
   <data-table-column [property]="'title'" [header]="'Titre'" [sortable]="true" [resizable]="true"></data-table-column>
   <data-table-column [property]="'director'" [header]="'Auteur'" [sortable]="true" [resizable]="true"></data-table-column>
-  <data-table-column [property]="'cinema'" [header]="'Cinéma'" [sortable]="true" [resizable]="true"></data-table-column>
-  <data-table-column [property]="'date'" [header]="'Date'" [sortable]="true" [resizable]="true">
+  <!--<data-table-column [property]="'cinema'" [header]="'Vu au cinéma'" [sortable]="true" [resizable]="true"></data-table-column>-->
+  <data-table-column [property]="'cinema'" [header]="'Vu au cinéma'" [sortable]="true" [resizable]="true" width="150px">
+    <ng-template #dataTableCell let-item="item">
+    <span>
+        <i class="fa fa-film" aria-hidden="true" *ngIf="isCinema(item)"></i> 
+        <i class="fa fa-tv" aria-hidden="true" *ngIf="!isCinema(item)"></i> 
+    </span>
+    </ng-template>
+</data-table-column>
+  <data-table-column [property]="'date'" [header]="'Date'" [sortable]="true" [resizable]="true" width="100px">
       <ng-template #dataTableCell let-item="item">
-          {{item.date | date:'MMMM yyyy':'':'fr'}}
+          {{item.date | date:'MM/yyyy':'':'fr'}}
       </ng-template>
   </data-table-column>
-  <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true"></data-table-column>
-  <data-table-column [property]="'$key'">
+  <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true" width="100px"></data-table-column>
+  <data-table-column [property]="'$key'" width="50px">
   <ng-template #dataTableCell let-item="item">
       <a [routerLink]="['/movies/',item.$key]">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

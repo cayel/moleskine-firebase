@@ -37,10 +37,20 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   filter(query: string) {
     let filteredmovies = (query) ?
-      this.movies.filter(b => b.title.toLowerCase().includes(query.toLowerCase())) : 
+      this.movies.filter(b => b.title.toLowerCase().includes(query.toLowerCase()) || b.director.toLowerCase().includes(query.toLowerCase())) : 
       this.movies;
 
     this.initializeTable(filteredmovies);
+  }
+
+  isCinema(movie) {
+    if (typeof movie.cinema === "string") {
+      let valueCinema : string; 
+      valueCinema = movie.cinema;
+      valueCinema = valueCinema.toLowerCase();
+      if (valueCinema =="false") return false;
+      else if (valueCinema =="true") return true;
+    } else return movie.cinema;
   }
 
   ngOnInit() {

@@ -19,7 +19,6 @@ export class BookService {
   }
 
   get(bookId, userId) {
-    console.log(bookId+userId)
     return this.db.object('/books/' + userId+ '/' + bookId);
   }
 

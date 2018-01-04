@@ -45,8 +45,16 @@ export class MovieFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {    
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.movieService.get(this.id, this.userId).take(1).subscribe(b => {
-      this.movie = b;
+    if (this.id) this.movieService.get(this.id, this.userId).take(1).subscribe(m => {
+      this.movie = m;
+      // if type of value cinema is string
+      if (typeof m.cinema === "string") {
+        let valueCinema : string; 
+        valueCinema = m.cinema;
+        valueCinema = valueCinema.toLowerCase();
+        if (valueCinema =="false") m.cinema = false;
+        else if (valueCinema =="true") m.cinema = true;
+      }
       this.dateEntry = new DateHelper().formatDate(new Date(this.movie.date));
     });
 }

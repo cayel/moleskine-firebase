@@ -41,12 +41,10 @@ export class BookSummaryComponent implements OnInit, OnDestroy {
     let countBooks = 0;
     for ( let i = 1; i < this.books.length; i++) {
       let dateEntry = new Date(this.books[i].date);
-      console.log(dateEntry.getFullYear());
       if (dateEntry.getFullYear() == 2017) {
         countBooks++;
       }
     }
-    console.log(countBooks);
     this.barChartData= [
       {data: [countBooks], label: '2017'}
     ];
