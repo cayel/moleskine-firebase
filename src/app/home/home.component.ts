@@ -10,9 +10,13 @@ import { Subscription } from 'rxjs/Subscription';
 export class HomeComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
+  connected
 
   constructor(private authService: AuthService) { 
     this.userSubscription = this.authService.user$.subscribe(user => {
+      if (!user) {
+        return;
+      }
       this.userId = user.uid
     });
   }
@@ -22,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {    
     this.userSubscription.unsubscribe(); 
+    console.log('home unsubscribe');
   }
 
 }

@@ -16,6 +16,15 @@ export class ComicSummaryComponent implements OnInit, OnDestroy {
   userId: string;
 
   constructor(private authService: AuthService,  private comicService: ComicService ) { 
+  }
+
+  comicActive() {
+    if (!this.comics) return false;
+    if (this.comics.length==0) return false;
+    return true;
+  }
+
+  ngOnInit() {
     this.userSubscription = this.authService.user$.subscribe(user => {
       this.userId = user.uid
       this.comicSubscription = this.comicService.getLast(this.userId).subscribe(comics => {
@@ -23,9 +32,6 @@ export class ComicSummaryComponent implements OnInit, OnDestroy {
         this.comics.reverse();
       });
     });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

@@ -25,6 +25,12 @@ export class MovieSummaryComponent implements OnInit, OnDestroy {
       });
     }
   
+    movieActive() {
+      if (!this.movies) return false;
+      if (this.movies.length==0) return false;
+      return true;
+    }
+
     ngOnInit() {
     }
   
