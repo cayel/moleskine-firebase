@@ -40,6 +40,7 @@ import { BookSummaryComponent } from './books/book-summary/book-summary.componen
 import { MovieSummaryComponent } from './movies/movie-summary/movie-summary.component';
 import { ComicSummaryComponent } from './comics/comic-summary/comic-summary.component';
 import { SummaryStatComponent } from './summary-stat/summary-stat.component';
+import { TvshowSummaryComponent } from './tvshows/tvshow-summary/tvshow-summary.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SummaryStatComponent } from './summary-stat/summary-stat.component';
     BookSummaryComponent,
     MovieSummaryComponent,
     ComicSummaryComponent,
-    SummaryStatComponent
+    SummaryStatComponent,
+    TvshowSummaryComponent,
   ],
   imports: [
     BrowserModule,

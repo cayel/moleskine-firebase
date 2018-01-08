@@ -1,0 +1,15 @@
+<div class="row" *ngIf="tvShowActive()">
+  <div class="card mb-3">
+    <div class="card-header">Les 5 dernières Séries</div>
+    <div class="card-body">
+      <p class="card-text">
+        <ng-container *ngFor="let tvshow of tvshows; let i = index;">
+          <a [routerLink]="['/tvshows/',tvshow.$key]">
+            <img class="col col-2-4" [src]="tvshow.imageUrl" alt="" title={{tvshow.title}} style="max-width:130px;height:auto" />
+          </a>
+        </ng-container>
+      </p>
+    </div>
+  </div>
+</div>
+

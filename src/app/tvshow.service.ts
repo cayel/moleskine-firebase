@@ -13,6 +13,10 @@ export class TvshowService {
     getAll(userId) {
       return this.db.list('/tvshows/'+userId,{query: {orderByChild : 'date', }});
     }
+
+    getLast(userId) {
+      return this.db.list('/tvshows/'+userId,{query: {orderByChild : 'date', limitToLast:5 }});
+    }       
   
     get(tvshowId, userId) {
       return this.db.object('/tvshows/' + userId+ '/' + tvshowId);
