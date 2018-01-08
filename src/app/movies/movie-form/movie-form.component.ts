@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Movie } from '../models/movie';
+import { Movie } from '../../models/movie';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { BookService } from '../book.service';
-import { DateHelper } from '../date-helper';
-import { MovieService } from '../movie.service';
+import { AuthService } from '../../auth.service';
+import { BookService } from '../../book.service';
+import { DateHelper } from '../../date-helper';
+import { MovieService } from '../../movie.service';
 
 @Component({
   selector: 'app-movie-form',

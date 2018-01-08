@@ -19,16 +19,16 @@ import { AuthService } from './auth.service';
 import { BookService } from './book.service';
 import { BooksFormComponent } from './books/books-form/books-form.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { ConcertFormComponent } from './concert-form/concert-form.component';
+import { ConcertFormComponent } from './concerts/concert-form/concert-form.component';
 import { ConcertService } from './concert.service';
 import { ConcertsComponent } from './concerts/concerts.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { MyBooksComponent } from './my-books/my-books.component';
+import { MyBooksComponent } from './books/my-books/my-books.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './user.service';
 import { MoviesComponent } from './movies/movies.component';
-import { MovieFormComponent } from './movie-form/movie-form.component';
+import { MovieFormComponent } from './movies/movie-form/movie-form.component';
 import { MovieService } from './movie.service';
 import { TvshowsComponent } from './tvshows/tvshow/tvshows.component';
 import { TvshowFormComponent } from './tvshows/tvshow-form/tvshow-form.component';
@@ -41,6 +41,7 @@ import { MovieSummaryComponent } from './movies/movie-summary/movie-summary.comp
 import { ComicSummaryComponent } from './comics/comic-summary/comic-summary.component';
 import { SummaryStatComponent } from './summary-stat/summary-stat.component';
 import { TvshowSummaryComponent } from './tvshows/tvshow-summary/tvshow-summary.component';
+import { ConcertSummaryComponent } from './concerts/concert-summary/concert-summary.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { TvshowSummaryComponent } from './tvshows/tvshow-summary/tvshow-summary.
     ComicSummaryComponent,
     SummaryStatComponent,
     TvshowSummaryComponent,
+    ConcertSummaryComponent,
   ],
   imports: [
     BrowserModule,

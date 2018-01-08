@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Concert } from '../models/concert';
+import { Concert } from '../../models/concert';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { ConcertService } from '../concert.service';
-import { DateHelper } from '../date-helper';
+import { AuthService } from '../../auth.service';
+import { ConcertService } from '../../concert.service';
+import { DateHelper } from '../../date-helper';
 
 @Component({
   selector: 'app-concert-form',

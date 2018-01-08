@@ -1,0 +1,14 @@
+<div class="row" *ngIf="concertActive()">
+  <div class="card mb-3">
+    <div class="card-header">Les 5 derniers concerts</div>
+    <div class="card-body">
+          <ul>
+            <li *ngFor="let concert of concerts; let i = index;">
+              <a [routerLink]="['/concerts/',concert.$key]">
+                {{ concert.mainArtist }}    
+              </a>le {{concert.date | date:'dd/MM/yyyy':'':'fr'}}
+              </li>
+            </ul>
+    </div>
+  </div>
+</div>

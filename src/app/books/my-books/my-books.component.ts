@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BookService } from '../book.service';
+import { BookService } from '../../book.service';
 import { Subscription } from 'rxjs/Subscription';
-import { AuthService } from '../auth.service';
-import { Book } from '../models/book';
+import { AuthService } from '../../auth.service';
+import { Book } from '../../models/book';
 import { DataTableResource } from 'angular-4-data-table';
 
 @Component({

@@ -14,6 +14,10 @@ export class ConcertService {
     return this.db.list('/concerts/'+userId,{query: {orderByChild : 'date', }});
   }
 
+  getLast(userId) {
+    return this.db.list('/concerts/'+userId,{query: {orderByChild : 'date', limitToLast:5 }});
+  } 
+
   get(concertId, userId) {
     return this.db.object('/concerts/' + userId+ '/' + concertId);
   }
