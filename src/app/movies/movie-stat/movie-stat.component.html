@@ -1,0 +1,6 @@
+{{countMovies}}
+<ul>
+  <li *ngFor="let stat of statMovies; let i = index;">
+    {{ stat.key }} - {{ stat.count }} ({{ stat.average }}) 
+  </li>
+</ul>

@@ -24,10 +24,8 @@
   <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true" width="80px"></data-table-column>
   <data-table-column [property]="'$key'" width="80px">
   <ng-template #dataTableCell let-item="item">
-      <a [routerLink]="['/movies/',item.$key]">
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-      </a>
-        <i *ngIf="item.comment"class="fa fa-comment" aria-hidden="true"></i>
+      <a [routerLink]="['/movies/',item.$key]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+      <i *ngIf="item.comment"class="fa fa-comment-o" aria-hidden="true"></i>
   </ng-template>
   </data-table-column>
 </data-table>

@@ -42,6 +42,7 @@ import { ComicSummaryComponent } from './comics/comic-summary/comic-summary.comp
 import { SummaryStatComponent } from './summary-stat/summary-stat.component';
 import { TvshowSummaryComponent } from './tvshows/tvshow-summary/tvshow-summary.component';
 import { ConcertSummaryComponent } from './concerts/concert-summary/concert-summary.component';
+import { MovieStatComponent } from './movies/movie-stat/movie-stat.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ConcertSummaryComponent } from './concerts/concert-summary/concert-summ
     SummaryStatComponent,
     TvshowSummaryComponent,
     ConcertSummaryComponent,
+    MovieStatComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ import { ConcertSummaryComponent } from './concerts/concert-summary/concert-summ
       { path : 'books/:id', component: BooksFormComponent, canActivate: [AuthGuard]},
       { path : 'my-books', component: MyBooksComponent, canActivate: [AuthGuard]},
       { path : 'movies/new', component: MovieFormComponent, canActivate: [AuthGuard] },      
+      { path : 'movies/stat', component: MovieStatComponent, canActivate: [AuthGuard] },      
       { path : 'movies/:id', component: MovieFormComponent, canActivate: [AuthGuard] },      
       { path : 'movies', component: MoviesComponent, canActivate: [AuthGuard] },
       { path : 'concerts/new', component: ConcertFormComponent, canActivate: [AuthGuard] },      
