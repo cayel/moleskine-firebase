@@ -16,7 +16,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
   dateEntry;
-  movie: Movie = {title:'',director:'',cinema: false, date: new Date().getTime(), rating:5, imageUrl:'http://'};
+  movie: Movie = {title:'',director:'',cinema: false, date: new Date().getTime(), rating:5, imageUrl:'http://', comment: ''};
   id;
 
   constructor(

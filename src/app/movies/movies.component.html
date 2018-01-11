@@ -8,7 +8,7 @@
   <data-table-column [property]="'title'" [header]="'Titre'" [sortable]="true" [resizable]="true"></data-table-column>
   <data-table-column [property]="'director'" [header]="'Auteur'" [sortable]="true" [resizable]="true"></data-table-column>
   <!--<data-table-column [property]="'cinema'" [header]="'Vu au cinéma'" [sortable]="true" [resizable]="true"></data-table-column>-->
-  <data-table-column [property]="'cinema'" [header]="'Vu au cinéma'" [sortable]="true" [resizable]="true" width="150px">
+  <data-table-column [property]="'cinema'" [header]="'TV/cinéma'" [sortable]="true" [resizable]="true" width="120px">
     <ng-template #dataTableCell let-item="item">
     <span>
         <i class="fa fa-film" aria-hidden="true" *ngIf="isCinema(item)"></i> 
@@ -21,12 +21,17 @@
           {{item.date | date:'MM/yyyy':'':'fr'}}
       </ng-template>
   </data-table-column>
-  <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true" width="100px"></data-table-column>
-  <data-table-column [property]="'$key'" width="50px">
+  <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true" width="80px"></data-table-column>
+  <data-table-column [property]="'$key'" width="80px">
   <ng-template #dataTableCell let-item="item">
       <a [routerLink]="['/movies/',item.$key]">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       </a>
+        <i *ngIf="item.comment"class="fa fa-comment" aria-hidden="true"></i>
   </ng-template>
   </data-table-column>
 </data-table>
+
+  <!-- Button trigger modal -->
+
+  

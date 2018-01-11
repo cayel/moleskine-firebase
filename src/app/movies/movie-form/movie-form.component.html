@@ -29,13 +29,17 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="imageUrl">Url</label>
+        <label for="imageUrl">Lien vers l'affiche</label>
         <input #imageUrl="ngModel" [(ngModel)]="movie.imageUrl" name="imageUrl" id="imageUrl" type="url" class="form-control" required url>
         <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
           <div *ngIf="imageUrl.errors.required">URL manquante.</div>
           <div *ngIf="imageUrl.errors.url">L'URL n'est pas valide.</div>
         </div>
       </div>
+      <div class="form-group">
+        <label for="comment">Commentaire</label>
+        <textarea class="form-control" #comment="ngModel" [(ngModel)]="movie.comment" name="comment" id="comment" rows="3"></textarea>
+      </div>      
       <button class="btn btn-primary">Enregistrer</button>
       <button type="button" (click)="delete()" class="btn btn-danger">Supprimer</button>
     </form>
