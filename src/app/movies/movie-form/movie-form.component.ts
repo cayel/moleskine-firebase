@@ -18,6 +18,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   dateEntry;
   movie: Movie = {title:'',director:'',cinema: false, date: new Date().getTime(), rating:5, imageUrl:'http://', comment: ''};
   id;
+  currentRate;
 
   constructor(
     private router: Router,
@@ -29,6 +30,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
 
   save(movie) {
     movie.date = new Date(Date.parse(this.dateEntry)).getTime();
+    movie.rating = this.currentRate;
 
     if (this.id) this.movieService.update(this.id, movie, this.userId);
     else this.movieService.create(movie, this.userId);
@@ -55,8 +57,12 @@ export class MovieFormComponent implements OnInit, OnDestroy {
         if (valueCinema =="false") m.cinema = false;
         else if (valueCinema =="true") m.cinema = true;
       }
+      this.currentRate = m.rating;
       this.dateEntry = new DateHelper().formatDate(new Date(this.movie.date));
     });
+    else {
+      this.currentRate = 5;
+    }
 }
 
   ngOnDestroy() {
