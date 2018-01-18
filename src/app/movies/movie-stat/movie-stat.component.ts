@@ -22,21 +22,56 @@ export class MovieStatComponent implements OnInit, OnDestroy{
   movieSubscription: Subscription;
   userSubscription: Subscription;
   userId: string;
-  statMovies=[];
+  statMoviesByYear=[];
+  statMoviesByDirector=[];
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+  };
+  public barChartLabels:string[] = [];
+  public barChartColors:Array<any> = [
+    { 
+      backgroundColor: 'rgba(63,127,191,0.8)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];  
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = false;
+ 
+  public barChartData:any[] = [{data : [], label:''}]; 
 
   constructor(private authService: AuthService,  private movieService: MovieService ) { 
     this.userSubscription = this.authService.user$.subscribe(user => {
       this.userId = user.uid
       this.movieSubscription = this.movieService.getAll(this.userId).subscribe(movies => {
         this.movies = movies;
-        this.organizeMoviesByYear();
-      });
+        this.statMoviesByYear = this.organizeMoviesByYear();
+        this.statMoviesByDirector = this.organizeMoviesByDirector();
+   
+        let dataChart=[];          
+        for ( let i = 1; i < this.statMoviesByYear.length; i++) {
+              this.barChartLabels.push(this.statMoviesByYear[i].key);
+              dataChart.push(this.statMoviesByYear[i].count);
+        };
+        this.barChartData= [
+          {data: dataChart, label: ''}];         
+      });      
     });
   }
 
-  getStatMovie(year:number) : Stat {
-    for ( let i = 0; i < this.statMovies.length; i++) {
-      if (this.statMovies[i].key == year) return this.statMovies[i];
+  filterMoviesDirector(count){
+    return this.statMoviesByDirector.filter(x => x.count > count).sort(function (a, b) {
+      return b.average - a.average;
+    });
+  }
+
+  getStatMovie(key : string, stat) : Stat {
+    for ( let i = 0; i < stat.length; i++) {
+      if (stat[i].key == key) return stat[i];
     }
     return null;
   }
@@ -47,21 +82,34 @@ export class MovieStatComponent implements OnInit, OnDestroy{
   }
 
   organizeMoviesByDirector() {
+    let stat = [];
+    for ( let i = 0; i < this.movies.length; i++) {
+      let director = this.movies[i].director;
+      let statMovie : Stat; 
+      statMovie = this.getStatMovie(director, stat);      
+      if (!statMovie) {
+        statMovie = { key: director, count : 0, average : 0 };
+        stat.push(statMovie);
+      }
+      this.addStatMovie(statMovie, this.movies[i])
+    }
+    return stat;
   }
   
   organizeMoviesByYear() {
+    let stat = [];
     for ( let i = 0; i < this.movies.length; i++) {
       let dateEntry = new Date(this.movies[i].date);
       let year = dateEntry.getFullYear();
       let statMovie : Stat; 
-      statMovie = this.getStatMovie(year);      
+      statMovie = this.getStatMovie(year.toString(), stat);      
       if (!statMovie) {
         statMovie = { key: year.toString(), count : 0, average : 0 };
-        this.statMovies.push(statMovie);
+        stat.push(statMovie);
       }
       this.addStatMovie(statMovie, this.movies[i])
     }
-    console.log(this.statMovies)
+    return stat;
   }
 
   ngOnInit() {

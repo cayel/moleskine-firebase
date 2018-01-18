@@ -1,6 +1,14 @@
-<p>
-  <a routerLink="/movies/new" class="btn btn-primary">Nouveau film</a>
-</p>
+<div class="row">
+  <div class="col-2">
+    <a routerLink="/movies/new" class="btn btn-primary">Nouveau film</a>
+  </div>
+  <div class="col-8">
+  </div>
+  <div class="col-2">
+    <a routerLink="/movies/stat" class="btn btn-primary pull-right">Statistiques</a>
+  </div>
+</div>
+<br>
 <p>
   <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Recherche...">
 </p>
@@ -10,26 +18,26 @@
   <!--<data-table-column [property]="'cinema'" [header]="'Vu au cinéma'" [sortable]="true" [resizable]="true"></data-table-column>-->
   <data-table-column [property]="'cinema'" [header]="'TV/cinéma'" [sortable]="true" [resizable]="true" width="120px">
     <ng-template #dataTableCell let-item="item">
-    <span>
-        <i class="fa fa-film" aria-hidden="true" *ngIf="isCinema(item)"></i> 
-        <i class="fa fa-tv" aria-hidden="true" *ngIf="!isCinema(item)"></i> 
-    </span>
+      <span>
+        <i class="fa fa-film" aria-hidden="true" *ngIf="isCinema(item)"></i>
+        <i class="fa fa-tv" aria-hidden="true" *ngIf="!isCinema(item)"></i>
+      </span>
     </ng-template>
-</data-table-column>
+  </data-table-column>
   <data-table-column [property]="'date'" [header]="'Date'" [sortable]="true" [resizable]="true" width="100px">
-      <ng-template #dataTableCell let-item="item">
-          {{item.date | date:'MM/yyyy':'':'fr'}}
-      </ng-template>
+    <ng-template #dataTableCell let-item="item">
+      {{item.date | date:'MM/yyyy':'':'fr'}}
+    </ng-template>
   </data-table-column>
   <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true" width="80px"></data-table-column>
   <data-table-column [property]="'$key'" width="80px">
-  <ng-template #dataTableCell let-item="item">
-      <a [routerLink]="['/movies/',item.$key]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-      <i *ngIf="item.comment"class="fa fa-comment-o" aria-hidden="true"></i>
-  </ng-template>
+    <ng-template #dataTableCell let-item="item">
+      <a [routerLink]="['/movies/',item.$key]">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+      <i *ngIf="item.comment" class="fa fa-comment-o" aria-hidden="true"></i>
+    </ng-template>
   </data-table-column>
 </data-table>
 
-  <!-- Button trigger modal -->
-
-  
+<!-- Button trigger modal -->
