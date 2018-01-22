@@ -3,15 +3,10 @@ import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from '../../auth.service';
 import { MovieService } from '../../movie.service';
-
-class Stat {
-  key: string;
-  count: number;
-  average: number;
-}
+import { Stat } from '../../stat-helper';
 
 @Component({
-  selector: 'app-movie-stat',
+  selector: 'movie-stat',
   templateUrl: './movie-stat.component.html',
   styleUrls: ['./movie-stat.component.css']
 })

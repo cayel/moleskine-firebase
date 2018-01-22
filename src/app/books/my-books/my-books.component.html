@@ -1,6 +1,14 @@
-<p>
-    <a routerLink="/books/new" class="btn btn-primary">Nouveau livre</a>
-</p>
+<div class="row">
+    <div class="col-2">
+      <a routerLink="/books/new" class="btn btn-primary">Nouveau livre</a>
+    </div>
+    <div class="col-8">
+    </div>
+    <div class="col-2">
+      <a routerLink="/books/stat" class="btn btn-primary pull-right">Statistiques</a>
+    </div>
+  </div>
+  <br>
 <p>
     <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Recherche...">
 </p>

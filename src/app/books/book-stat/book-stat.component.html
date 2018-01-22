@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-6">
+    <div style="display: block">
+      <h4>Mes livres par années</h4>
+      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [colors]="barChartColors" [options]="barChartOptions"
+        [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="col-6">
+    <div style="display: block">
+      <h4>Mes auteurs favoris</h4>
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Moyenne</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stat of filterBooksWriter(2); let i = index;">
+            <th scope="row">{{i+1}}</th>
+            <td>{{ stat.key }}</td>
+            <td align="center">{{ stat.count }}</td>
+            <td align="center">{{ stat.average | number:'1.0-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
