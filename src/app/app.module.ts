@@ -44,6 +44,7 @@ import { TvshowSummaryComponent } from './tvshows/tvshow-summary/tvshow-summary.
 import { ConcertSummaryComponent } from './concerts/concert-summary/concert-summary.component';
 import { MovieStatComponent } from './movies/movie-stat/movie-stat.component';
 import { BookStatComponent } from './books/book-stat/book-stat.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { BookStatComponent } from './books/book-stat/book-stat.component';
     ConcertSummaryComponent,
     MovieStatComponent,
     BookStatComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
