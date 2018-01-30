@@ -57,6 +57,10 @@ export class MovieFormComponent implements OnInit, OnDestroy {
         if (valueCinema =="false") m.cinema = false;
         else if (valueCinema =="true") m.cinema = true;
       }
+      // if property comment doesn't exist (old version)
+      if (typeof m.comment === "undefined") {
+        m.comment = '';
+      }
       this.currentRate = m.rating;
       this.dateEntry = new DateHelper().formatDate(new Date(this.movie.date));
     });
