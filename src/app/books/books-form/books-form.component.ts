@@ -21,6 +21,7 @@ export class BooksFormComponent implements OnInit, OnDestroy {
   dateEntry;
   book: Book = {title:'',writer:'',date: new Date().getTime(), rating:5, imageUrl:'http://'};
   id;
+  currentRate=3;
 
   constructor(
     private router: Router,
@@ -32,6 +33,7 @@ export class BooksFormComponent implements OnInit, OnDestroy {
 
   save(book) {
     book.date = new Date(Date.parse(this.dateEntry)).getTime();
+    book.rating = this.currentRate;
 
     if (this.id) this.bookService.update(this.id, book, this.userId);
     else this.bookService.create(book, this.userId);
@@ -48,12 +50,21 @@ export class BooksFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {    
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.bookService.get(this.id, this.userId).take(1).subscribe(b => {
+    if (this.id) {
+      this.bookService.get(this.id, this.userId).take(1).subscribe(b => {
       this.book = b;
+      this.currentRate = b.rating;
       this.dateEntry = new DateHelper().formatDate(new Date(this.book.date));
     });
+    } else
+    {
+      this.currentRate = 5;
+    }
 }
 
+changeRate($event){
+  this.currentRate = $event;
+}
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }

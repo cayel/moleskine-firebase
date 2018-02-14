@@ -1,0 +1,8 @@
+<div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="rating">Note</label>
+  <ngb-rating [(rate)]="currentRate">
+    <ng-template let-fill="fill" let-index="index">
+      <span class="star" [class.filled]="fill === 100" (mouseleave)="onChangeRate()">&#9733;</span>
+    </ng-template>
+  </ngb-rating>
+</div>

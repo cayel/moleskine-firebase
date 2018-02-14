@@ -15,17 +15,11 @@
         <label for="date">Date</label>
         <input #date="ngModel" [(ngModel)]="dateEntry" name="date" id="date" type="date" class="form-control" required>
         <div class="alert alert-danger" *ngIf="date.touched && date.invalid">Date manquante.</div>
-      </div>
+      </div>     
+      <rating  [currentRate]="currentRate"
+        (rateChanged)="changeRate($event)"></rating>
       <div class="form-group">
-        <label for="rating">Note</label>
-        <input #rating="ngModel" [(ngModel)]="book.rating" name="rating" id="rating" type="number" class="form-control" required [range]="[1, 10]">
-        <div class="alert alert-danger" *ngIf="rating.touched && rating.invalid">
-          <div *ngIf="rating.errors.required">Note manquante.</div>
-          <div *ngIf="rating.errors.range">La note doit être comprise entre 1 et 10.</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="imageUrl">Url</label>
+        <label for="imageUrl">Lien vers la couverture</label>
         <input #imageUrl="ngModel" [(ngModel)]="book.imageUrl" name="imageUrl" id="imageUrl" type="url" class="form-control" required url>
         <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
           <div *ngIf="imageUrl.errors.required">URL manquante.</div>

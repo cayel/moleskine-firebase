@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID,NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -47,6 +47,7 @@ import { BookStatComponent } from './books/book-stat/book-stat.component';
 import { MovieDbService } from './moviedb.service';
 import { HttpModule } from '@angular/http';
 import { MovieReferenceService } from './movie-reference.service';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { MovieReferenceService } from './movie-reference.service';
     ConcertSummaryComponent,
     MovieStatComponent,
     BookStatComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,7 +125,8 @@ import { MovieReferenceService } from './movie-reference.service';
     TvshowService,
     ComicService,
     MovieDbService,
-    MovieReferenceService
+    MovieReferenceService,
+    { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]
 })

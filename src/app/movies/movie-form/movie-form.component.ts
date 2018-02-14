@@ -17,8 +17,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/merge';
 import { MovieReferenceService } from '../../movie-reference.service';
-import { MovieReference } from '../../models/movie-reference';
-
 
 @Component({
   selector: 'app-movie-form',
@@ -86,6 +84,10 @@ export class MovieFormComponent implements OnInit, OnDestroy {
         else if (valueCinema =="true") m.cinema = true;
       }
       if (typeof m.comment != "string") m.comment = "";
+      // if property comment doesn't exist (old version)
+      if (typeof m.comment === "undefined") {
+        m.comment = '';
+      }
       this.currentRate = m.rating;
       if (typeof this.movie.idMovieDb === "number") {
         // Movie reference found in database
