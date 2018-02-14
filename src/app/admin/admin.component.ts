@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit, OnDestroy  {
   async saveMovie(title : string, director : string, cinema: boolean, date : string, rating: number) {
     let convertDate : Date;
     convertDate = new Date(Date.parse(date));    
-    let movie = new Movie(title, director, cinema,  convertDate.getTime(), rating, DEFAULT_IMAGEURL, '') ;
+    let movie = new Movie(title, director, cinema,  convertDate.getTime(), rating, DEFAULT_IMAGEURL, '',0) ;
     let result = await this.movieService.create(movie,this.userId);
   }
 

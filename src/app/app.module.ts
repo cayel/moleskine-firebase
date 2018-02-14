@@ -44,6 +44,9 @@ import { TvshowSummaryComponent } from './tvshows/tvshow-summary/tvshow-summary.
 import { ConcertSummaryComponent } from './concerts/concert-summary/concert-summary.component';
 import { MovieStatComponent } from './movies/movie-stat/movie-stat.component';
 import { BookStatComponent } from './books/book-stat/book-stat.component';
+import { MovieDbService } from './moviedb.service';
+import { HttpModule } from '@angular/http';
+import { MovieReferenceService } from './movie-reference.service';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,7 @@ import { BookStatComponent } from './books/book-stat/book-stat.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     CustomFormsModule,
     ChartsModule,
     DataTableModule,
@@ -117,7 +121,9 @@ import { BookStatComponent } from './books/book-stat/book-stat.component';
     ConcertService,
     MovieService,
     TvshowService,
-    ComicService
+    ComicService,
+    MovieDbService,
+    MovieReferenceService
   ],
   bootstrap: [AppComponent]
 })
