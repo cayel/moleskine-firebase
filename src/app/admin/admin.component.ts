@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit, OnDestroy  {
   async saveConcert(mainArtist : string, otherArtist : string, date : string, venue : string, rating: number) {
     let convertDate : Date;
     convertDate = new Date(Date.parse(date));    
-    let concert = new Concert(mainArtist, otherArtist, convertDate.getTime(), venue, rating);
+    let concert = new Concert(mainArtist, otherArtist, convertDate.getTime(), venue, rating, '');
     let result = await this.concertService.create(concert,this.userId);
   }
 

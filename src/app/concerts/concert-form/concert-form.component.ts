@@ -15,7 +15,7 @@ export class ConcertFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   userId: string;
   dateEntry;
-  concert: Concert = {mainArtist:'',otherArtist:'',venue: '',date: new Date().getTime(), rating:5};
+  concert: Concert = {mainArtist:'',otherArtist:'',venue: '',date: new Date().getTime(), rating:5, comment: ''};
   id;
 
   constructor(
@@ -46,6 +46,10 @@ export class ConcertFormComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) this.concertService.get(this.id, this.userId).take(1).subscribe(c => {
       this.concert = c;
+      // if property comment doesn't exist (old version)
+      if (typeof c.comment === "undefined") {
+        c.comment = '';
+      }
       this.dateEntry = new DateHelper().formatDate(new Date(this.concert.date));
     });
   }
