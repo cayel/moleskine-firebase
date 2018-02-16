@@ -44,6 +44,10 @@ import { TvshowSummaryComponent } from './tvshows/tvshow-summary/tvshow-summary.
 import { ConcertSummaryComponent } from './concerts/concert-summary/concert-summary.component';
 import { MovieStatComponent } from './movies/movie-stat/movie-stat.component';
 import { BookStatComponent } from './books/book-stat/book-stat.component';
+import { MovieDbService } from './moviedb.service';
+import { HttpModule } from '@angular/http';
+import { MovieReferenceService } from './movie-reference.service';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -71,10 +75,12 @@ import { BookStatComponent } from './books/book-stat/book-stat.component';
     ConcertSummaryComponent,
     MovieStatComponent,
     BookStatComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     CustomFormsModule,
     ChartsModule,
     DataTableModule,
@@ -118,6 +124,8 @@ import { BookStatComponent } from './books/book-stat/book-stat.component';
     MovieService,
     TvshowService,
     ComicService,
+    MovieDbService,
+    MovieReferenceService,
     { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]
