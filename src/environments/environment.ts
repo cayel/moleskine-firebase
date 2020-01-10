@@ -6,11 +6,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCOBNm4KIg2eNxKv1osvH1HlZcVRSomEjA",
-    authDomain: "mylogbook-87d9b.firebaseapp.com",
-    databaseURL: "https://mylogbook-87d9b.firebaseio.com",
-    projectId: "mylogbook-87d9b",
-    storageBucket: "mylogbook-87d9b.appspot.com",
-    messagingSenderId: "548008044034"
+    apiKey: "AIzaSyBoScbJ_0RM4B7hduWkwa997bYQZSGzHqI",
+    authDomain: "moleskine-test.firebaseapp.com",
+    databaseURL: "https://moleskine-test.firebaseio.com",
+    projectId: "moleskine-test",
+    storageBucket: "moleskine-test.appspot.com",
+    messagingSenderId: "54052662921",
+    appId: "1:54052662921:web:7f8c816deb991a9a0da058"
   }  
 };
