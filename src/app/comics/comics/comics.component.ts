@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Comic } from '../../models/comic';
-import { DataTableResource } from 'angular-4-data-table';
+import { DataTableResource } from 'angular5-data-table';
 import { AuthService } from '../../auth.service';
 import { ComicService } from '../../comic.service';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Concert } from '../models/concert';
-import { DataTableResource } from 'angular-4-data-table';
+import { DataTableResource } from 'angular5-data-table';
 import { AuthService } from '../auth.service';
 import { ConcertService } from '../concert.service';
 

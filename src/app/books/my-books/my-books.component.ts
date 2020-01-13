@@ -3,7 +3,7 @@ import { BookService } from '../../book.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from '../../auth.service';
 import { Book } from '../../models/book';
-import { DataTableResource } from 'angular-4-data-table';
+import { DataTableResource } from 'angular5-data-table';
 
 @Component({
   selector: 'app-my-books',

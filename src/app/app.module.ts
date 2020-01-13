@@ -1,9 +1,11 @@
-import { LOCALE_ID,NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DataTableModule } from 'angular-4-data-table';
+import { DataTableModule } from 'angular5-data-table';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -48,6 +50,8 @@ import { MovieDbService } from './moviedb.service';
 import { HttpModule } from '@angular/http';
 import { MovieReferenceService } from './movie-reference.service';
 import { RatingComponent } from './rating/rating.component';
+
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -125,8 +129,7 @@ import { RatingComponent } from './rating/rating.component';
     TvshowService,
     ComicService,
     MovieDbService,
-    MovieReferenceService,
-    { provide: LOCALE_ID, useValue: 'fr' }
+    MovieReferenceService
   ],
   bootstrap: [AppComponent]
 })

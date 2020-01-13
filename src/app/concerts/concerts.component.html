@@ -13,7 +13,7 @@
           {{item.date | date:'dd/MM/yyyy':'':'fr'}}
       </ng-template>
   </data-table-column>
-  <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true" width="80px"></data-table-column>
+  <data-table-column [property]="'rating'" [header]="'Note'" [sortable]="true" [resizable]="true" width="100px"></data-table-column>
   <data-table-column [property]="'$key'" width="80px">
   <ng-template #dataTableCell let-item="item">
       <a [routerLink]="['/concerts/',item.$key]">
