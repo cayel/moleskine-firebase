@@ -38,7 +38,7 @@ export class MovieReferenceService {
   }
 
   private async updateRating (movieId, title,  releaseDate, userId, userRating) {
-    return this.getItemByMovieId(movieId).take(1).subscribe(data => {
+    return this.getItemByMovieId(movieId).take(1).subscribe((data : any[]) => {
       if (data.length > 0) this.updateRatingUser(data[0].$key, userId, userRating);
       else {
         let result = this.create(movieId, title, releaseDate);
