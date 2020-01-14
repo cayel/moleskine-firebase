@@ -46,7 +46,7 @@ export class BookStatComponent implements  OnInit, OnDestroy{
         this.statBooksByWriter = this.organizeMoviesByDirector();
    
         let dataChart=[];          
-        for ( let i = 1; i < this.statBooksByYear.length; i++) {
+        for ( let i = 0; i < this.statBooksByYear.length; i++) {
               this.barChartLabels.push(this.statBooksByYear[i].key);
               dataChart.push(this.statBooksByYear[i].count);
         };
