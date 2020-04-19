@@ -18,12 +18,14 @@ export class MovieStatComponent implements OnInit, OnDestroy{
   userSubscription: Subscription;
   userId: string;
   statMoviesByYear=[];
+  statMoviesByReleaseYear=[];
   statMoviesByDirector=[];
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true,
   };
   public barChartLabels:string[] = [];
+  public barChartLabelsReleaseDate:string[] = [];
   public barChartColors:Array<any> = [
     { 
       backgroundColor: 'rgba(63,127,191,0.8)',
@@ -37,7 +39,8 @@ export class MovieStatComponent implements OnInit, OnDestroy{
  
   public barChartData:any[] = [{data : [], label:'TV', stack : 'a'},
   {data : [], label:'Cinéma', stack : 'a'}];
-   
+  public barChartDataReleaseYear:any[] = [{data : [], label:'TV', stack : 'a'},
+  {data : [], label:'Cinéma', stack : 'a'}]; 
 
   constructor(private authService: AuthService,  private movieService: MovieService ) { 
     this.userSubscription = this.authService.user$.subscribe(user => {
@@ -45,6 +48,7 @@ export class MovieStatComponent implements OnInit, OnDestroy{
       this.movieSubscription = this.movieService.getAll(this.userId).subscribe(movies => {
         this.movies = movies;
         this.statMoviesByYear = this.organizeMoviesByYear();
+        this.statMoviesByReleaseYear = this.organizeMoviesByReleaseYear();
         this.statMoviesByDirector = this.organizeMoviesByDirector();
    
         let dataChart=[];          
@@ -57,6 +61,22 @@ export class MovieStatComponent implements OnInit, OnDestroy{
         this.barChartData= [
           {data: dataChart, label: 'TV', stack : 'a'},         
           {data: dataChartCinema, label: 'Cinéma', stack: 'a'}];         
+
+        let dataChartReleaseYear=[];          
+        let dataChartCinemaReleaseYear=[];
+
+        // sort list by release date asc
+        this.statMoviesByReleaseYear.sort((a, b) => (a.key > b.key) ? 1 : -1)
+
+        for ( let i = 0; i < this.statMoviesByReleaseYear.length; i++) {
+              this.barChartLabelsReleaseDate.push(this.statMoviesByReleaseYear[i].key);
+              dataChartReleaseYear.push(this.statMoviesByReleaseYear[i].count-this.statMoviesByReleaseYear[i].countCinema);
+              dataChartCinemaReleaseYear.push(this.statMoviesByReleaseYear[i].countCinema);
+        };
+        this.barChartDataReleaseYear= [
+          {data: dataChartReleaseYear, label: 'TV', stack : 'a'},         
+          {data: dataChartCinemaReleaseYear, label: 'Cinéma', stack: 'a'}];         
+  
       });      
     });
   }
@@ -121,7 +141,24 @@ export class MovieStatComponent implements OnInit, OnDestroy{
     return stat;
   }
 
+  organizeMoviesByReleaseYear() {
+    let stat = [];
+    for ( let i = 0; i < this.movies.length; i++) {
+      let releaseDate = new Date(this.movies[i].releaseDate);
+      let year = releaseDate.getFullYear();
+      let statMovie : StatMovie; 
+      statMovie = this.getStatMovie(year.toString(), stat);      
+      if (!statMovie) {
+        statMovie = { key: year.toString(), count : 0, countCinema : 0,  average : 0 };
+        stat.push(statMovie);
+      }
+      this.addStatMovie(statMovie, this.movies[i])
+    }
+    return stat;
+  }
+
   ngOnInit() {
+    console.log('init');
   }
 
   ngOnDestroy() {

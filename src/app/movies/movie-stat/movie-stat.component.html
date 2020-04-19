@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let stat of filterMoviesDirector(2); let i = index;">
+          <tr *ngFor="let stat of filterMoviesDirector(1)| slice:0:5; let i = index;">
             <th scope="row">{{i+1}}</th>
             <td>{{ stat.key }}</td>
             <td align="center">{{ stat.count }}</td>
@@ -30,3 +30,11 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-6">
+    <div style="display: block">
+      <h4>Mes films par années de sortie</h4>
+      <canvas baseChart [datasets]="barChartDataReleaseYear" [labels]="barChartLabelsReleaseDate" [colors]="barChartColors" [options]="barChartOptions"
+        [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+    </div>
+  </div>
