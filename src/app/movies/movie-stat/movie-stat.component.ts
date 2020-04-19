@@ -74,10 +74,20 @@ export class MovieStatComponent implements OnInit, OnDestroy{
     return null;
   }
 
+  isCinema(movie) {
+    if (typeof movie.cinema === "string") {
+      let valueCinema : string; 
+      valueCinema = movie.cinema;
+      valueCinema = valueCinema.toLowerCase();
+      if (valueCinema =="false") return false;
+      else if (valueCinema =="true") return true;
+    } else return movie.cinema;
+  }
+
   addStatMovie(stat, movie) {
     stat.average = ((+stat.average*stat.count) + (+movie.rating)) / (+stat.count+1);
     stat.count++;
-    if (movie.cinema) stat.countCinema++;
+    if (this.isCinema(movie)) stat.countCinema++;
   }
 
   organizeMoviesByDirector() {
