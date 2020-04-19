@@ -36,7 +36,7 @@ export class MyBooksComponent implements OnInit, OnDestroy {
 
   filter(query: string) {
     let filteredBooks = (query) ?
-      this.books.filter(b => b.title.toLowerCase().includes(query.toLowerCase())) : 
+      this.books.filter(b => b.title.toLowerCase().includes(query.toLowerCase()) || b.writer.toLowerCase().includes(query.toLowerCase())) :       
       this.books;
 
     this.initializeTable(filteredBooks);
