@@ -142,17 +142,19 @@ export class MovieStatComponent implements OnInit, OnDestroy{
   }
 
   organizeMoviesByReleaseYear() {
-    let stat = [];
+    let stat = [];    
     for ( let i = 0; i < this.movies.length; i++) {
-      let releaseDate = new Date(this.movies[i].releaseDate);
-      let year = releaseDate.getFullYear();
-      let statMovie : StatMovie; 
-      statMovie = this.getStatMovie(year.toString(), stat);      
-      if (!statMovie) {
-        statMovie = { key: year.toString(), count : 0, countCinema : 0,  average : 0 };
-        stat.push(statMovie);
+      if (this.movies[i].releaseDate != null ) {
+        let releaseDate = new Date(this.movies[i].releaseDate);
+        let year = releaseDate.getFullYear();
+        let statMovie : StatMovie; 
+        statMovie = this.getStatMovie(year.toString(), stat);      
+        if (!statMovie) {
+          statMovie = { key: year.toString(), count : 0, countCinema : 0,  average : 0 };
+          stat.push(statMovie);
+        }
+        this.addStatMovie(statMovie, this.movies[i])
       }
-      this.addStatMovie(statMovie, this.movies[i])
     }
     return stat;
   }
