@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let stat of filterMoviesDirector(1)| slice:0:5; let i = index;">
+          <tr *ngFor="let stat of filterMoviesDirector(2)| slice:0:20; let i = index;">
             <th scope="row">{{i+1}}</th>
             <td>{{ stat.key }}</td>
             <td align="center">{{ stat.count }}</td>
