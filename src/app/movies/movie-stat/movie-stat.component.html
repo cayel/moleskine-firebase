@@ -8,6 +8,14 @@
   </div>
   <div class="col-6">
     <div style="display: block">
+      <h4>Mes films par années de sortie</h4>
+      <canvas baseChart [datasets]="barChartDataReleaseYear" [labels]="barChartLabelsReleaseDate" [colors]="barChartColors" [options]="barChartOptions"
+        [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+  </div>
+</div>  
+<div class="row">
+  <div class="col-6">
+    <div style="display: block">
       <h4>Mes réalisateurs favoris</h4>
       <table class="table table-sm table-hover">
         <thead>
@@ -30,11 +38,3 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-6">
-    <div style="display: block">
-      <h4>Mes films par années de sortie</h4>
-      <canvas baseChart [datasets]="barChartDataReleaseYear" [labels]="barChartLabelsReleaseDate" [colors]="barChartColors" [options]="barChartOptions"
-        [legend]="barChartLegend" [chartType]="barChartType"></canvas>
-    </div>
-  </div>
