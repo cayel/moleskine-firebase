@@ -27,7 +27,7 @@
     "bootstrap": "^4.0.0",
     "chart.js": "^2.9.3",
     "core-js": "^2.4.1",
-    "firebase": "4.2.0",
+    "firebase": "4.13.1",
     "font-awesome": "^4.7.0",
     "ng2-charts": "^1.6.0",
     "ng2-validation": "^4.2.0",
